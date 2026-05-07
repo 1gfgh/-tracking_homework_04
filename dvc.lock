@@ -1,0 +1,50 @@
+schema: '2.0'
+stages:
+  baseline:
+    cmd: python train_stage.py
+    deps:
+    - path: ai-vs-human-generated-dataset-hw/Test_1
+      hash: md5
+      md5: 62c3780e5c19bc53638a42e202acda77.dir
+      size: 229951307
+      nfiles: 3998
+    - path: ai-vs-human-generated-dataset-hw/Train_1
+      hash: md5
+      md5: be4fba47d09ac1e4ff93610c7ce22370.dir
+      size: 577186450
+      nfiles: 9994
+    outs:
+    - path: base_metrics.json
+      hash: md5
+      md5: 57ab0e59a8dab3a3d1a0d555703cb0ee
+      size: 68
+    - path: model_base.pth
+      hash: md5
+      md5: 5d9ef77a7da633238cc264600932f396
+      size: 44789368
+  finetune:
+    cmd: python finetune_stage.py
+    deps:
+    - path: ai-vs-human-generated-dataset-hw/Test_2
+      hash: md5
+      md5: be5492c21e2dec84056e1599a807ccd1.dir
+      size: 114391042
+      nfiles: 2001
+    - path: ai-vs-human-generated-dataset-hw/Train_2
+      hash: md5
+      md5: cd8edb58d893e35241fdf8fbf6049229.dir
+      size: 229344118
+      nfiles: 3998
+    - path: model_base.pth
+      hash: md5
+      md5: 38bd018c8dea82280aee7b0f3f2593ab
+      size: 44789368
+    outs:
+    - path: finetune_metrics.json
+      hash: md5
+      md5: 1f59081ce521e61d2c53fda425cfcc2e
+      size: 54
+    - path: model_fine.pth
+      hash: md5
+      md5: 4232d403d4939f4b14c62dff5315973d
+      size: 44789368

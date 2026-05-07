@@ -1,0 +1,18 @@
+stages:
+  baseline:
+    cmd: python train_stage.py
+    deps:
+    - ai-vs-human-generated-dataset-hw/Test_1
+    - ai-vs-human-generated-dataset-hw/Train_1
+    outs:
+    - base_metrics.json
+    - model_base.pth
+  finetune:
+    cmd: python finetune_stage.py
+    deps:
+    - ai-vs-human-generated-dataset-hw/Test_2
+    - ai-vs-human-generated-dataset-hw/Train_2
+    - model_base.pth
+    outs:
+    - finetune_metrics.json
+    - model_fine.pth
